@@ -1,110 +1,88 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <style>
-        .teks-biru {
-            color: #0000FF; /* Menggunakan kode hex biru murni */
-        }
-    </style>
-</head>
-<body>
-
-    <h1 class="teks-biru">Judul Ini Berwarna Biru</h1>
-    <p class="teks-biru">Paragraf ini juga berwarna biru.</p>
-
-</body>
-</html>
-
-
-
-<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TokoKita - Belanja Mudah & Murah</title>
+    <title>TOKO KITA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { background-color: #f4f4f4; color: #333; }
-        
-        /* Header */
-        header { background: #fff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; }
-        .logo { font-size: 24px; font-weight: bold; color: #ff5722; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: bold; }
-
-        /* Hero Banner */
-        .hero { background: #ff5722; color: #fff; text-align: center; padding: 60px 20px; }
-        .hero h1 { font-size: 36px; margin-bottom: 10px; }
-        .hero p { font-size: 18px; margin-bottom: 20px; }
-        .btn { background: #fff; color: #ff5722; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; }
-
-        /* Product Section */
-        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
-        .section-title { font-size: 22px; margin-bottom: 20px; border-bottom: 2px solid #ff5722; padding-bottom: 5px; display: inline-block; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-        
-        /* Product Card */
-        .card { background: #fff; border-radius: 5px; padding: 15px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 150px; background: #ddd; border-radius: 5px; margin-bottom: 10px; }
-        .card h3 { font-size: 16px; margin-bottom: 5px; }
-        .card .price { color: #ff5722; font-weight: bold; margin-bottom: 10px; }
-        .card button { background: #ff5722; color: #fff; border: none; padding: 8px 15px; border-radius: 3px; cursor: pointer; width: 100%; }
-
-        /* Footer */
-        footer { background: #333; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+        body{background:#f5f5f5;padding:15px}
+        .header{display:flex;justify-content:space-between;align-items:center;padding:15px 0 10px}
+        .logo{font-size:22px;font-weight:700;color:#ff5722}
+        .cart-btn{border:none;background:none;font-size:20px;cursor:pointer;color:#333}
+        .banner{background:#ff5722;color:#fff;border-radius:16px;padding:18px;margin-bottom:20px}
+        .banner h2{font-size:18px;margin-bottom:5px}
+        .banner p{font-size:14px;opacity:0.9}
+        .section-title{font-size:18px;font-weight:600;margin-bottom:15px;padding-bottom:5px;border-bottom:2px solid #ff5722;display:inline-block}
+        .produk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+        .produk-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+        .produk-img{width:100%;height:200px;object-fit:cover}
+        .produk-info{padding:12px}
+        .nama-produk{font-size:15px;font-weight:600;margin-bottom:6px;color:#222}
+        .harga{font-size:16px;font-weight:700;color:#e63946}
+        .beli-btn{width:100%;background:#ff5722;color:#fff;border:none;padding:10px;border-radius:8px;margin-top:10px;cursor:pointer;font-weight:600}
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">TokoKita</div>
-        <div class="nav-links">
-            <a href="#">Beranda</a>
-            <a href="#">Kategori</a>
-            <a href="#">Keranjang</a>
-        </div>
-    </header>
+<!-- Header -->
+<div class="header">
+    <h1 class="logo">TOKO KITA</h1>
+    <button class="cart-btn"><i class="fas fa-shopping-bag"></i></button>
+</div>
 
-    <section class="hero">
-        <h1>Diskon Spesial Hari Ini!</h1>
-        <p>Temukan produk terbaik dengan harga paling hemat di sini.</p>
-        <a href="#" class="btn">Belanja Sekarang</a>
-    </section>
+<!-- Banner -->
+<div class="banner">
+    <h2>🔥 DISKON SPESIAL HARI INI!</h2>
+    <p>Temukan produk terbaik dengan harga paling hemat</p>
+</div>
 
-    <div class="container">
-        <h2 class="section-title">Produk Terlaris</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="" alt="Produk">
-                <h3>Sepatu Olahraga</h3>
-                <div class="price">Rp 250.000</div>
-                <button>Beli</button>
-            </div>
-            <div class="card">
-                <img src="" alt="Produk">
-                <h3>Tas Ransel Pria</h3>
-                <div class="price">Rp 150.000</div>
-                <button>Beli</button>
-            </div>
-            <div class="card">
-                <img src="" alt="Produk">
-                <h3>Jam Tangan Kasual</h3>
-                <div class="price">Rp 300.000</div>
-                <button>Beli</button>
-            </div>
-            <div class="card">
-                <img src="" alt="Produk">
-                <h3>Kaos Polos Katun</h3>
-                <div class="price">Rp 75.000</div>
-                <button>Beli</button>
-            </div>
+<!-- Daftar Produk -->
+<h2 class="section-title">Produk Terlaris</h2>
+<div class="produk-grid">
+
+    <!-- ✅ 1. JAKET PRIA -->
+    <div class="produk-card">
+        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=400&fit=crop" class="produk-img" alt="Jaket Pria">
+        <div class="produk-info">
+            <p class="nama-produk">🧥 Jaket Pria</p>
+            <p class="harga">Rp 100.000,00</p>
+            <button class="beli-btn">Beli Sekarang</button>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 TokoKita. Hak cipta dilindungi.</p>
-    </footer>
+    <!-- ✅ 2. TAS WANITA -->
+    <div class="produk-card">
+        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop" class="produk-img" alt="Tas Wanita">
+        <div class="produk-info">
+            <p class="nama-produk">👜 Tas Wanita</p>
+            <p class="harga">Rp 60.000,00</p>
+            <button class="beli-btn">Beli Sekarang</button>
+        </div>
+    </div>
+
+    <!-- ✅ 3. SEPATU SEKOLAH -->
+    <div class="produk-card">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" class="produk-img" alt="Sepatu Sekolah">
+        <div class="produk-info">
+            <p class="nama-produk">👟 Sepatu Sekolah</p>
+            <p class="harga">Rp 70.000,00</p>
+            <button class="beli-btn">Beli Sekarang</button>
+        </div>
+    </div>
+
+    <!-- ✅ 4. CELANA PRIA -->
+    <div class="produk-card">
+        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400&h=400&fit=crop" class="produk-img" alt="Celana Pria">
+        <div class="produk-info">
+            <p class="nama-produk">👖 Celana Pria</p>
+            <p class="harga">Rp 140.000,00</p>
+            <button class="beli-btn">Beli Sekarang</button>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
