@@ -160,12 +160,6 @@ button{
     margin-bottom:12px;
 }
 
-.product video{
-    width:100%;
-    margin-top:10px;
-    border-radius:10px;
-}
-
 .action{
     display:flex;
     gap:8px;
@@ -312,15 +306,30 @@ button{
 <body>
 
 <header>
-    <h1>🛍️ GadgetStore Management System</h1>
-    <p>Sistem E-Commerce Gadget Interaktif</p>
 
-    <div class="nav">
-        <button onclick="scrollToSection('admin')">👨‍💼 Admin</button>
-        <button onclick="scrollToSection('catalog')">📱 Katalog</button>
-        <button onclick="scrollToSection('cart')">🛒 Keranjang (<span id="cartCount">0</span>)</button>
-        <button onclick="scrollToSection('orders')">📦 Pesanan</button>
-    </div>
+<h1>🛍️ GadgetStore Management System</h1>
+<p>Sistem E-Commerce Gadget Interaktif</p>
+
+<div class="nav">
+
+<button onclick="scrollToSection('admin')">
+👨‍💼 Admin
+</button>
+
+<button onclick="scrollToSection('catalog')">
+📱 Katalog
+</button>
+
+<button onclick="scrollToSection('cart')">
+🛒 Keranjang (<span id="cartCount">0</span>)
+</button>
+
+<button onclick="scrollToSection('orders')">
+📦 Pesanan
+</button>
+
+</div>
+
 </header>
 
 <div class="container">
@@ -328,16 +337,19 @@ button{
 <!-- ================= ADMIN ================= -->
 
 <section class="section" id="admin">
+
 <h2>👨‍💼 Panel Administrator</h2>
 
 <div class="form-group">
 <label>Nama Produk</label>
-<input type="text" id="productName" placeholder="Contoh: Smartphone Premium">
+<input type="text" id="productName"
+placeholder="Contoh: Smartphone Premium">
 </div>
 
 <div class="form-group">
 <label>Harga Produk</label>
-<input type="number" id="productPrice" placeholder="12000000">
+<input type="number" id="productPrice"
+placeholder="12000000">
 </div>
 
 <div class="form-group">
@@ -355,21 +367,25 @@ placeholder="https://...jpg">
 <button class="btn-primary" onclick="addProduct()">
 💾 Simpan Produk ke Database
 </button>
+
 </section>
 
 
 <!-- ================= KATALOG ================= -->
 
 <section class="section" id="catalog">
+
 <h2>📱 Katalog Produk</h2>
 
 <div class="product-grid" id="productGrid"></div>
+
 </section>
 
 
 <!-- ================= KERANJANG ================= -->
 
 <section class="section" id="cart">
+
 <h2>🛒 Keranjang Belanja</h2>
 
 <div id="cartList"></div>
@@ -383,14 +399,18 @@ Total: <span id="cartTotal">Rp 0</span>
 <button class="btn-success" onclick="checkoutCart()">
 💳 Checkout Semua
 </button>
+
 </section>
 
 
 <!-- ================= PESANAN ================= -->
 
 <section class="section" id="orders">
+
 <h2>📦 Status Pesanan</h2>
+
 <div id="orderList"></div>
+
 </section>
 
 </div>
@@ -410,45 +430,89 @@ Total: <span id="cartTotal">Rp 0</span>
 
 <div id="checkoutItems"></div>
 
-<hr><br>
+<hr>
+
+<br>
 
 <div class="form-group">
+
 <label>Nama Penerima</label>
-<input type="text" id="customerName" placeholder="Nama lengkap">
+
+<input type="text" id="customerName"
+placeholder="Nama lengkap">
+
 </div>
 
+
 <div class="form-group">
+
 <label>Nomor Telepon</label>
-<input type="text" id="phone" placeholder="08xxxxxxxxxx">
+
+<input type="text" id="phone"
+placeholder="08xxxxxxxxxx">
+
 </div>
 
+
 <div class="form-group">
+
 <label>Alamat Pengiriman</label>
+
 <textarea id="address"
 placeholder="Masukkan alamat lengkap"></textarea>
+
 </div>
 
+
 <div class="form-group">
+
 <label>Metode Pembayaran</label>
 
 <select id="payment">
-<option value="Transfer Bank">🏦 Transfer Bank</option>
-<option value="BCA">💳 BCA</option>
-<option value="BRI">💳 BRI</option>
-<option value="Mandiri">💳 Mandiri</option>
-<option value="DANA">📱 DANA</option>
-<option value="OVO">📱 OVO</option>
-<option value="GoPay">📱 GoPay</option>
-<option value="COD">💵 COD (Bayar di Tempat)</option>
+
+<option value="Transfer Bank">
+🏦 Transfer Bank
+</option>
+
+<option value="BCA">
+💳 BCA
+</option>
+
+<option value="BRI">
+💳 BRI
+</option>
+
+<option value="Mandiri">
+💳 Mandiri
+</option>
+
+<option value="DANA">
+📱 DANA
+</option>
+
+<option value="OVO">
+📱 OVO
+</option>
+
+<option value="GoPay">
+📱 GoPay
+</option>
+
+<option value="COD">
+💵 COD (Bayar di Tempat)
+</option>
+
 </select>
 
 </div>
+
 
 <button class="btn-success" onclick="placeOrder()">
 ✅ Bayar & Buat Pesanan
 </button>
 
 </div>
+
 </div>
 
 
@@ -511,16 +575,20 @@ let orders = [];
 
 
 // FORMAT RUPIAH
+
 function rupiah(number){
+
     return new Intl.NumberFormat("id-ID",{
         style:"currency",
         currency:"IDR",
         maximumFractionDigits:0
     }).format(number);
+
 }
 
 
 // TAMPILKAN PRODUK
+
 function displayProducts(){
 
     const grid = document.getElementById("productGrid");
@@ -547,35 +615,37 @@ function displayProducts(){
                     ${product.description}
                 </p>
 
-                <video controls>
-                    <source
-                    src="https://cdn.pixabay.com/video/2020/05/24/40177-424390687_large.mp4"
-                    type="video/mp4">
-                </video>
-
                 <div class="action">
 
                     <button class="btn-warning"
                     onclick="addToCart(${product.id})">
+
                     🛒 Keranjang
+
                     </button>
 
                     <button class="btn-success"
                     onclick="buyNow(${product.id})">
+
                     ⚡ Beli Sekarang
+
                     </button>
 
                 </div>
 
             </div>
+
         </div>
 
         `;
+
     });
+
 }
 
 
 // TAMBAH KERANJANG
+
 function addToCart(id){
 
     const product = products.find(p => p.id === id);
@@ -583,21 +653,27 @@ function addToCart(id){
     const existing = cart.find(p => p.id === id);
 
     if(existing){
+
         existing.qty++;
+
     }else{
+
         cart.push({
             ...product,
             qty:1
         });
+
     }
 
     updateCart();
 
     alert(product.name + " berhasil masuk keranjang!");
+
 }
 
 
 // UPDATE KERANJANG
+
 function updateCart(){
 
     const list = document.getElementById("cartList");
@@ -617,6 +693,7 @@ function updateCart(){
     cart.forEach(item => {
 
         total += item.price * item.qty;
+
         count += item.qty;
 
         list.innerHTML += `
@@ -638,7 +715,9 @@ function updateCart(){
                 <button
                 class="btn-danger"
                 onclick="changeQty(${item.id},-1)">
+
                 −
+
                 </button>
 
                 <b>${item.qty}</b>
@@ -646,7 +725,9 @@ function updateCart(){
                 <button
                 class="btn-primary"
                 onclick="changeQty(${item.id},1)">
+
                 +
+
                 </button>
 
             </div>
@@ -654,20 +735,26 @@ function updateCart(){
             <button
             class="btn-danger"
             onclick="removeCart(${item.id})">
+
             Hapus
+
             </button>
 
         </div>
 
         `;
+
     });
 
     document.getElementById("cartTotal").innerText = rupiah(total);
+
     document.getElementById("cartCount").innerText = count;
+
 }
 
 
 // JUMLAH BARANG
+
 function changeQty(id, amount){
 
     const item = cart.find(p => p.id === id);
@@ -683,26 +770,33 @@ function changeQty(id, amount){
     }
 
     updateCart();
+
 }
 
 
 // HAPUS
+
 function removeCart(id){
 
     cart = cart.filter(p => p.id !== id);
 
     updateCart();
+
 }
 
 
 // BELI SEKARANG
+
 function buyNow(id){
 
     const product = products.find(p => p.id === id);
 
     cart = [{
+
         ...product,
+
         qty:1
+
     }];
 
     updateCart();
@@ -713,6 +807,7 @@ function buyNow(id){
 
 
 // CHECKOUT KERANJANG
+
 function checkoutCart(){
 
     if(cart.length === 0){
@@ -720,13 +815,16 @@ function checkoutCart(){
         alert("Keranjang masih kosong!");
 
         return;
+
     }
 
     openCheckout();
+
 }
 
 
 // BUKA CHECKOUT
+
 function openCheckout(){
 
     const modal =
@@ -746,10 +844,15 @@ function openCheckout(){
         items.innerHTML += `
 
         <p>
+
         ${item.name}
+
         × ${item.qty}
+
         =
+
         <b>${rupiah(item.price * item.qty)}</b>
+
         </p>
 
         `;
@@ -757,15 +860,20 @@ function openCheckout(){
     });
 
     items.innerHTML += `
+
     <br>
+
     <h3>Total: ${rupiah(total)}</h3>
+
     `;
 
     modal.style.display = "flex";
+
 }
 
 
 // TUTUP
+
 function closeCheckout(){
 
     document.getElementById("checkoutModal")
@@ -775,6 +883,7 @@ function closeCheckout(){
 
 
 // BUAT PESANAN
+
 function placeOrder(){
 
     const name =
@@ -795,6 +904,7 @@ function placeOrder(){
         alert("Silakan lengkapi data pengiriman!");
 
         return;
+
     }
 
 
@@ -839,9 +949,13 @@ function placeOrder(){
     displayOrders();
 
     alert(
+
         "Pesanan berhasil dibuat! 🎉\n\n" +
+
         "Pembayaran: " + payment +
+
         "\nStatus: Menunggu diproses."
+
     );
 
     scrollToSection("orders");
@@ -850,6 +964,7 @@ function placeOrder(){
 
 
 // TAMPILKAN PESANAN
+
 function displayOrders(){
 
     const list =
@@ -861,10 +976,13 @@ function displayOrders(){
 
         list.innerHTML =
         `<div class="empty">
+
         📦 Belum ada pesanan.
+
         </div>`;
 
         return;
+
     }
 
 
@@ -893,17 +1011,32 @@ function displayOrders(){
 
             <br>
 
-            <p><b>Penerima:</b> ${order.customer}</p>
+            <p>
+            <b>Penerima:</b>
+            ${order.customer}
+            </p>
 
-            <p><b>Telepon:</b> ${order.phone}</p>
+            <p>
+            <b>Telepon:</b>
+            ${order.phone}
+            </p>
 
-            <p><b>Alamat:</b> ${order.address}</p>
+            <p>
+            <b>Alamat:</b>
+            ${order.address}
+            </p>
 
-            <p><b>Pembayaran:</b> ${order.payment}</p>
+            <p>
+            <b>Pembayaran:</b>
+            ${order.payment}
+            </p>
 
             <br>
 
-            <p><b>Total:</b> ${rupiah(order.total)}</p>
+            <p>
+            <b>Total:</b>
+            ${rupiah(order.total)}
+            </p>
 
             <br>
 
@@ -935,13 +1068,17 @@ function displayOrders(){
                 `<button
                 class="btn-primary"
                 onclick="nextStatus(${order.id})">
+
                 ➡️ Update Status Pesanan
+
                 </button>`
 
                 :
 
                 `<button class="btn-success">
+
                 ✅ Pesanan Selesai
+
                 </button>`
             }
 
@@ -955,6 +1092,7 @@ function displayOrders(){
 
 
 // UPDATE STATUS
+
 function nextStatus(id){
 
     const order =
@@ -972,6 +1110,7 @@ function nextStatus(id){
 
 
 // TAMBAH PRODUK ADMIN
+
 function addProduct(){
 
     const name =
@@ -992,6 +1131,7 @@ function addProduct(){
         alert("Semua data produk harus diisi!");
 
         return;
+
     }
 
 
@@ -1014,8 +1154,11 @@ function addProduct(){
 
 
     document.getElementById("productName").value = "";
+
     document.getElementById("productPrice").value = "";
+
     document.getElementById("productDescription").value = "";
+
     document.getElementById("productImage").value = "";
 
 
@@ -1025,6 +1168,7 @@ function addProduct(){
 
 
 // SCROLL
+
 function scrollToSection(id){
 
     document.getElementById(id)
@@ -1036,12 +1180,14 @@ function scrollToSection(id){
 
 
 // START
+
 displayProducts();
+
 updateCart();
+
 displayOrders();
 
 </script>
 
 </body>
 </html>
-
