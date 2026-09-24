@@ -1,130 +1,82 @@
+<?php
+// Kelas Produk
+class Produk {
+    public $nama;
+    public $warna;
+    public $harga;
+
+    // Constructor
+    public function __construct($nama, $warna = null, $harga = null) {
+        $this->nama = $nama;
+        $this->warna = $warna;
+        $this->harga = $harga;
+    }
+
+    // Tampilkan detail
+    public function getDetail() {
+        return "Nama Produk: " . $this->nama . " | Harga: Rp" . number_format($this->harga, 0, ',', '.');
+    }
+
+    // Destructor
+    public function __destruct() {
+        // Otomatis berjalan di akhir
+    }
+}
+
+$produkBaru = null;
+
+// Proses input form
+if (isset($_POST['submit'])) {
+    $namaInput = $_POST['nama_produk'];
+    $hargaInput = $_POST['harga_produk'];
+    
+    // Buat objek baru
+    $produkBaru = new Produk($namaInput, null, $hargaInput);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GadgetStore Management System</title>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-        body{background:#f3eefb;line-height:1.6;}
-        header{background:linear-gradient(135deg,#2d0c5e,#5b21b6);color:#fff;padding:22px;text-align:center;box-shadow:0 4px 14px rgba(45,12,94,0.3);}
-        header h1{font-size:28px;color:#fff;}
-        .container{max-width:1400px;margin:20px auto;padding:0 15px;display:grid;grid-template-columns:380px 1fr;gap:20px;}
-        .panel{background:#fff;border-radius:12px;box-shadow:0 3px 12px rgba(75,29,150,0.15);padding:25px;border-top:4px solid #6b21a8;}
-        .panel h2{color:#2d0c5e;margin-bottom:20px;border-bottom:2px solid #ddd6f3;padding-bottom:10px;}
-        .form-group{margin-bottom:15px;}
-        label{display:block;font-weight:600;margin-bottom:6px;color:#000;}
-        input,textarea{width:100%;padding:10px 12px;border:1px solid #bfa8e0;border-radius:8px;font-size:14px;color:#000;}
-        input:focus,textarea:focus{outline:none;border-color:#6b21a8;box-shadow:0 0 0 3px rgba(107,33,168,0.2);}
-        textarea{resize:vertical;min-height:80px;}
-        button.btn-simpan{background:linear-gradient(135deg,#6b21a8,#4b1d96);color:#fff;border:none;padding:12px 20px;border-radius:8px;font-weight:bold;cursor:pointer;width:100%;font-size:15px;transition:0.3s;}
-        button.btn-simpan:hover{background:linear-gradient(135deg,#5a189a,#3c1578);}
-        .katalog{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
-        .produk-card{background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(75,29,150,0.12);overflow:hidden;transition:0.3s;border:1px solid #e9d5ff;}
-        .produk-card:hover{transform:translateY(-5px);box-shadow:0 6px 18px rgba(75,29,150,0.2);}
-        .produk-card img{width:100%;height:200px;object-fit:cover;}
-        .produk-info{padding:15px;}
-        .produk-nama{font-size:18px;font-weight:bold;color:#000;margin-bottom:8px;}
-        .produk-harga{font-size:17px;font-weight:bold;color:#7e22ce;margin-bottom:10px;}
-        .produk-desc{font-size:14px;color:#1f1f1f;margin-bottom:12px;}
-        video{width:100%;border-radius:8px;margin-bottom:12px;background:#000;}
-        .btn-beli{display:inline-block;background:linear-gradient(135deg,#6b21a8,#4b1d96);color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;transition:0.3s;}
-        .btn-beli:hover{background:linear-gradient(135deg,#5a189a,#3c1578);}
-        .status-pesanan{margin-top:25px;padding:15px;background:#faf5ff;border-radius:10px;border-left:4px solid #6b21a8;}
-        .status-pesanan h3{margin-bottom:12px;color:#000;}
-        .status-item{padding:8px 12px;border-radius:6px;margin-bottom:8px;font-weight:500;color:#000;}
-        .belum-bayar{background:#f3e8ff;}
-        .diproses{background:#e9d5ff;}
-        .dikirim{background:#d8b4fe;}
-        .selesai{background:#c4b5fd;}
-        @media(max-width:900px){.container{grid-template-columns:1fr;}}
-    </style>
+    <title>Input Data Produk</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light p-4">
 
-<header><h1>GadgetStore Management System</h1></header>
+<div class="container" style="max-width: 600px;">
 
-<div class="container">
-    <section class="panel">
-        <h2>⚙️ Panel Admin - Kelola Produk</h2>
-        <form id="formProduk">
-            <div class="form-group"><label>Nama Produk</label><input type="text" id="namaProduk" placeholder="Smartphone Premium" required></div>
-            <div class="form-group"><label>Deskripsi & Spesifikasi</label><textarea id="deskripsiProduk" placeholder="Layar 120Hz, RAM 12GB, 256GB" required></textarea></div>
-            <div class="form-group"><label>Harga Produk</label><input type="text" id="hargaProduk" placeholder="Rp 12.000.000" required></div>
-            <div class="form-group"><label>URL Gambar Produk</label><input type="url" id="gambarProduk" placeholder="https://..." required></div>
-            <button type="button" class="btn-simpan" onclick="simpanProduk()">💾 Simpan Produk ke Database</button>
-        </form>
-    </section>
-
-    <section class="panel">
-        <h2>🛒 Katalog Produk</h2>
-        <div class="katalog" id="daftarProduk">
-            <div class="produk-card">
-                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=250&fit=crop" alt="HP 1">
-                <div class="produk-info">
-                    <h3 class="produk-nama">Smartphone Premium</h3>
-                    <p class="produk-harga">Rp 12.000.000</p>
-                    <p class="produk-desc">Layar 120Hz, RAM 12GB, 256GB</p>
-                    <video controls>
-                        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                        Browser tidak mendukung video
-                    </video>
-                    <a href="#" class="btn-beli">Beli Sekarang →</a>
-                </div>
-            </div>
-            <div class="produk-card">
-                <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=250&fit=crop" alt="HP 2">
-                <div class="produk-info">
-                    <h3 class="produk-nama">Smartphone Lite</h3>
-                    <p class="produk-harga">Rp 8.500.000</p>
-                    <p class="produk-desc">Layar 90Hz, RAM 8GB, 128GB</p>
-                    <video controls>
-                        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                        Browser tidak mendukung video
-                    </video>
-                    <a href="#" class="btn-beli">Beli Sekarang →</a>
-                </div>
-            </div>
-            <div class="produk-card">
-                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=250&fit=crop" alt="Laptop">
-                <div class="produk-info">
-                    <h3 class="produk-nama">Laptop Ultra</h3>
-                    <p class="produk-harga">Rp 18.500.000</p>
-                    <p class="produk-desc">Layar 14", RAM 16GB, SSD 1TB</p>
-                    <video controls>
-                        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                        Browser tidak mendukung video
-                    </video>
-                    <a href="#" class="btn-beli">Beli Sekarang →</a>
-                </div>
-            </div>
+    <!-- Tampilkan hasil jika ada -->
+    <?php if ($produkBaru): ?>
+        <div class="alert alert-success" role="alert">
+            <strong>Detail Produk:</strong><br>
+            <?= $produkBaru->getDetail(); ?>
         </div>
-        <div class="status-pesanan">
-            <h3>📦 Status Pesanan</h3>
-            <div class="status-item belum-bayar">⏳ Belum dibayar</div>
-            <div class="status-item diproses">🔄 Diproses</div>
-            <div class="status-item dikirim">🚚 Dikirim</div>
-            <div class="status-item selesai">✅ Selesai</div>
+    <?php endif; ?>
+
+    <!-- Form Input -->
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
+            <h4 class="card-title mb-4">Input Data Produk</h4>
+            
+            <form method="POST" action="">
+                <div class="mb-3">
+                    <label for="nama_produk" class="form-label">Nama Produk:</label>
+                    <input type="text" class="form-control" id="nama_produk" name="nama_produk" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="harga_produk" class="form-label">Harga Produk (Rp):</label>
+                    <input type="number" class="form-control" id="harga_produk" name="harga_produk" required>
+                </div>
+
+                <button type="submit" name="submit" class="btn btn-success w-100">Simpan Data Produk</button>
+            </form>
         </div>
-    </section>
+    </div>
+
 </div>
-
-<script>
-function simpanProduk(){
-    const nama=document.getElementById('namaProduk').value;
-    const deskripsi=document.getElementById('deskripsiProduk').value;
-    const harga=document.getElementById('hargaProduk').value;
-    const gambar=document.getElementById('gambarProduk').value;
-    if(!nama||!deskripsi||!harga||!gambar){alert('Lengkapi semua data!');return;}
-    const daftar=document.getElementById('daftarProduk');
-    const kartuBaru=document.createElement('div');
-    kartuBaru.className='produk-card';
-    kartuBaru.innerHTML=`<img src="${gambar}" alt="${nama}"><div class="produk-info"><h3 class="produk-nama">${nama}</h3><p class="produk-harga">${harga}</p><p class="produk-desc">${deskripsi}</p><video controls><source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4"></video><a href="#" class="btn-beli">Beli Sekarang →</a></div>`;
-    daftar.appendChild(kartuBaru);
-    document.getElementById('formProduk').reset();
-    alert('✅ Produk berhasil disimpan!');
-}
-</script>
 
 </body>
 </html>
